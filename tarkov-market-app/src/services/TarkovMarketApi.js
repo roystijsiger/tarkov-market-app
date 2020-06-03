@@ -3,7 +3,7 @@ import axios from 'axios';
 var Axios = axios.create({
     baseURL: 'https://tarkov-market.com/api/v1/',
     headers: {
-        'x-api-key':  'your_api_key'
+        'x-api-key':  '4jaKa2rAHW4lZzlM'
     }
 })
 
