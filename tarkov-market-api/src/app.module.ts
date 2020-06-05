@@ -1,9 +1,8 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { FavoritesModule} from './favorites/favorite.module'
+import { AuthModule } from './auth/auth.module';
 @Module({
-  imports: [FavoritesModule] ,
+  imports: [FavoritesModule, AuthModule] ,
   //controllers: [AppController],
   //providers: [AppService],
 })
