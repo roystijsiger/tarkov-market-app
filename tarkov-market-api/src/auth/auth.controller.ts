@@ -1,14 +1,18 @@
 import { Body, Controller, Get, Post, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { Request} from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { UserDto } from './user.dto';
+import { UserDto } from '../users/user.dto';
 import { ApiBearerAuth, ApiBody, ApiOkResponse, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
+import { UsersService } from 'src/users/users.service';
 
 @ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService : AuthService) {}
+  constructor(
+    private readonly authService : AuthService,
+    private readonly userService : UsersService
+    ) {}
 
   @Post('login')
   @ApiOkResponse({
@@ -29,5 +33,10 @@ export class AuthController {
   @ApiBearerAuth()
   getProfile(@Request() req){
     return req.user;
+   }
+
+   @Post('register')
+   async register(@Body() user : UserDto) : Promise<any>{
+     return this.userService.create(user);
    }
 }
