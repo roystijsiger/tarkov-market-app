@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, UseGuards} from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards, Delete, Param} from '@nestjs/common';
 import { FavoritesService } from './favorite.service';
 import { Favorite } from './favorite.interface';
 import { CreateFavoriteDto} from './favorite.dto';
@@ -26,4 +26,10 @@ export class FavoritesController {
     this.favoritesService.create(createFavoriteDto);
   }
 
-}
+  @Delete(':uid')
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth()
+  async delete(@Request() req, @Param('uid') itemId : string) : Promise<Number>{
+    return this.favoritesService.deleteFavoriteByUser( req.user.userId, itemId);
+  }
+ }

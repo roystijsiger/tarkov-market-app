@@ -25,7 +25,7 @@ export class AuthController {
     if(userFound){
       return this.authService.login(userFound);
     }
-    return new UnauthorizedException();
+    throw new UnauthorizedException();
   }
 
   @Get('profile')

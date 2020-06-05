@@ -20,4 +20,10 @@ export class FavoritesService {
   async findAll(userId : Number): Promise<Favorite[]> {
     return this.favoriteModel.find({userId : userId}).exec();
   }
+  
+  async deleteFavoriteByUser(userId: Number,itemId : string) : Promise<Number>{
+
+     var x = await this.favoriteModel.deleteMany({userId : userId, item : itemId}).exec();;
+      return x.deletedCount;
+  }
 }
