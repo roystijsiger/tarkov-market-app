@@ -2,12 +2,12 @@ import { ApiProperty } from "@nestjs/swagger";
 
 export class CreateFavoriteDto {
     @ApiProperty({
-        description: 'The email of the user',
+        description: 'The id of the user',
     })
-    email: string;
+    userId: Number;
 
     @ApiProperty({
-        description: 'The item uid'
+        description: 'The id of the item'
     })
     item: string;
 }

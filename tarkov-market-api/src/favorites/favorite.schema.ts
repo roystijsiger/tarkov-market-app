@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 
 export const FavoriteSchema = new mongoose.Schema({
-  email: String,
+  userId: Number,
   item: String
 });

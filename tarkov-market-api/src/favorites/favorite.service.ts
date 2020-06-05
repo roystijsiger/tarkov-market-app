@@ -17,7 +17,7 @@ export class FavoritesService {
     return createdFavorite.save();
   }
 
-  async findAll(): Promise<Favorite[]> {
-    return this.favoriteModel.find().exec();
+  async findAll(userId : Number): Promise<Favorite[]> {
+    return this.favoriteModel.find({userId : userId}).exec();
   }
 }

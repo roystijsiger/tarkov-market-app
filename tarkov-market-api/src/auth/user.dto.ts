@@ -9,7 +9,7 @@ export class UserDto {
     example: "roy@delcom.nl"
 
   })
-  public email: string;
+  public username: string;
 
   @IsString()
   @ApiProperty({

@@ -19,7 +19,7 @@ export class AuthController {
   async login(@Body() user : UserDto) : Promise<any>{
     const userFound = await this.authService.validateUser(user);
     if(userFound){
-      return this.authService.login(user);
+      return this.authService.login(userFound);
     }
     return new UnauthorizedException();
   }
