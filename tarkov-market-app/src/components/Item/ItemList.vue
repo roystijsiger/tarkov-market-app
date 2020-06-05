@@ -1,17 +1,36 @@
 <template>
   <div>
-    <Item v-for="item in itemsFound" :key="item.uid" :uid="item.uid" :name="item.name" :price="item.price" :img="item.img" :wiki="item.link" :diff24h="item.diff24h" :trader="SetTrader(item)"></Item>
+    <span v-if="itemsFound.length == 0">
+      Geen items gevonden :)
+    </span>
+    <Item v-for="item in itemsFound" 
+      :key="item.uid" 
+      :uid="item.uid" 
+      :name="item.name" 
+      :price="item.price" 
+      :img="item.img" 
+      :wiki="item.link" 
+      :diff24h="item.diff24h" 
+      :trader="SetTrader(item)"
+    ></Item>
   </div>
 </template>
 
 <script>
+import {SearchItem} from '../../services/TarkovMarketApi';
 import Item from './Item';
 
 export default {
   name: 'ItemList',
-  props: ['itemsFound'],
   components: {
    Item,
+  },
+  created(){
+    this.$parent.$parent.$parent.$on('search', (searchValue) => {
+       SearchItem(searchValue).then(response => {
+          this.itemsFound = response.data
+        })
+    })
   },
   methods: { 
     SetTrader(item){
@@ -23,6 +42,7 @@ export default {
     }
   },
   data: () => ({
+    itemsFound: []
   }),
 };
 </script>

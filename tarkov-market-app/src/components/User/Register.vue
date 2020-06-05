@@ -11,26 +11,26 @@
             solo-inverted
             type="password"
           ></v-text-field>
-        <v-btn @click="Login()">Login</v-btn>
+        <v-btn @click="Register()">Register</v-btn>
     </div>
 </template>
 
 <script>
-import {Login} from '../../services/FavoriteApi'
-
+import {Register} from '../../services/FavoriteApi'
 export default {
     data : () => ({
-        user : {
+        user: {
             email: "",
             password: ""
         }
+      
     }),
     methods : {
-        Login(){
-            Login(this.user).then(response => {
-                localStorage.setItem('token', response.data.accessToken)
-                this.$router.push({path: '/item/list'})
-            }).catch((error) => {
+        Register(){
+            Register(this.user.email, this.user.password).then(response =>{
+                console.log(response);
+                this.$router.push({path: '/item/list'});
+            }).catch(error =>{
                 console.log(error);
             })
         }

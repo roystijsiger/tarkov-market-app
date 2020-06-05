@@ -38,7 +38,7 @@
                     </table>
                 </v-col>
                 <v-col>
-                    <button flat  @click="favorite = !favorite"><v-icon size="70" color="red" x-large>{{favorite ? "fas" : "far"}} fa-heart</v-icon></button>
+                    <button flat  @click="toggleFavorite()"><v-icon size="70" color="red" x-large>{{favorite ? "fas" : "far"}} fa-heart</v-icon></button>
                 </v-col>
             </v-row>
             
@@ -47,13 +47,22 @@
 </template>
 
 <script>
+import {AddFavorite, RemoveFavorite} from '../../services/FavoriteApi';
 export default {
     
   name: 'item',
   props: ['uid','price','img','wiki','name','diff24h','trader'],
   data: () => ({
       favorite: false
-  })
+  }),
+  methods : {
+      toggleFavorite(){
+          var promise = !this.favorite ? AddFavorite(this.uid) : RemoveFavorite(this.uid);
+          promise.then(() => {
+             this.favorite = !this.favorite
+          })
+      }
+  }
 }
 </script>
 

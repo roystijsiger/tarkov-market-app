@@ -6,6 +6,7 @@
       height="75px"
     >
       <h1>Tarkov Market App</h1>
+      
       <div class="searchBar">
       <v-text-field
             v-model="searchValue"
@@ -18,31 +19,28 @@
 
     <v-content class="contentBox">
       <router-view></router-view>
-      <ItemList :itemsFound="itemsFound"/>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import ItemList from './components/Item/ItemList';
-import {SearchItem} from './services/TarkovMarketApi';
 
 export default {
   name: 'App',
-
-  components: {
-   ItemList,
-  },
   methods : {
     Search(){
       if(this.searchValue.length >= 3){
         if(!this.loggedIn){
           alert('Please login first');
+          return;
         }
-        this.$router.push({path: '/item/list'})
-        SearchItem(this.searchValue).then(response => {
-          this.itemsFound = response.data
-        })
+        console.log();
+        if(this.$router.currentRoute.fullPath !== '/item/list'){
+          this.$router.push({path: '/item/list'})
+        }
+
+        this.$emit('search', this.searchValue);
+       
       }
     }
   },
@@ -52,7 +50,7 @@ export default {
   data: () => ({
     searchValue: "",
     itemsFound: [],
-    loggedIn: true
+    loggedIn: localStorage.getItem('token') ?? false
   }),
 };
 </script>
