@@ -17,7 +17,7 @@
           @keyup="Search()"
         ></v-text-field>
         
-        <v-btn :to="{path: '/favorites'}" fab color="orange" class="favorites"><v-icon>fas fa-star</v-icon></v-btn>
+        <v-btn :to="{path: '/favorites'}" fab color="red" class="favorites"><v-icon>fas fa-heart</v-icon></v-btn>
 
         <v-btn @click="Logout()" fab color="red" class="logout"><v-icon>fas fa-sign-out-alt</v-icon></v-btn>
       </div>
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-
+import {SetToken} from './services/FavoriteApi'
 export default {
   name: 'App',
   methods : {
@@ -40,7 +40,6 @@ export default {
           alert('Please login first');
           return;
         }
-        console.log();
         if(this.$router.currentRoute.fullPath !== '/item/list'){
           this.$router.push({path: '/item/list'})
         }
@@ -50,7 +49,7 @@ export default {
       }
     },
     Logout(){
-      localStorage.removeItem("token");
+      SetToken(null);
       this.loggedIn = false;
       this.$router.push({path: '/login'});
     }

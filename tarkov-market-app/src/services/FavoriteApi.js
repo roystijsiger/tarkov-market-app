@@ -1,12 +1,19 @@
 import axios from 'axios';
-
+var a = "asdfsdfa";
 var Axios = axios.create({
     baseURL: 'http://127.0.0.1:3000',
     headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('token')
     }
 })
 
+Axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+
+export function SetToken(token){
+    token ? localStorage.setItem('token', token) 
+        : localStorage.removeItem('token');
+     
+    Axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+}
 /*
 * User section :)
 */
@@ -19,6 +26,7 @@ export function Register(username, password){
 
 export function Login(username, password)
     {
+    console.log(a);
     return Axios.post('/auth/login', {
         "username": username,
         "password": password

@@ -5,7 +5,7 @@ export class CreateFavoriteDto {
     @ApiProperty({
         description: 'The id of the user',
     })
-    userId: Number;
+    userId: string;
 
     @IsNotEmpty()
     @IsString()

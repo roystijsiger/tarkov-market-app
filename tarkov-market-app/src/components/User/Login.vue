@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import {Login} from '../../services/FavoriteApi'
+import {Login, SetToken} from '../../services/FavoriteApi'
 
 export default {
     data : () => ({
@@ -31,7 +31,7 @@ export default {
     methods : {
         Login(){
             Login(this.user.email, this.user.password).then(response => {
-                localStorage.setItem('token', response.data.accessToken)
+                SetToken(response.data.accessToken);
                 this.$parent.$parent.$parent.loggedIn = true;
                 this.$router.push({path: '/item/list'})
             }).catch((error) => {

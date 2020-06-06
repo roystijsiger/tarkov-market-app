@@ -22,7 +22,8 @@ export class FavoritesController {
   @UseGuards(AuthGuard('jwt'))
   @ApiBearerAuth()
   async findByItemId(@Request() req, @Param('uid') itemId : string) : Promise<Favorite>{
-    return this.favoritesService.findByFavoriteByItemId(itemId, req.user.userId);
+    console.log(req.user);
+    return this.favoritesService.findByFavoriteByItemId(req.user.userId, itemId );
   }
  
   @Post()
@@ -37,6 +38,7 @@ export class FavoritesController {
   @UseGuards(AuthGuard('jwt'))
   @ApiBearerAuth()
   async delete(@Request() req, @Param('uid') itemId : string) : Promise<Number>{
+    console.log(req.user);
     return this.favoritesService.deleteFavoriteByUser( req.user.userId, itemId);
   }
  }

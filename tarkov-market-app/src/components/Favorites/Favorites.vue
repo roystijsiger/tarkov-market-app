@@ -37,11 +37,8 @@ export default {
                 });
 
                 Promise.all(promises).then((results) => {
-                    console.log(results);
                     var index = 0;
                     results.forEach((result) =>{
-                        console.log(` ${index}`,this.favorites[index]);
-                        console.log(`object`, result.data[0])
                         this.favorites[index] = result.data[0];
                         this.favorites[index].favorite = true;
                         index++;
