@@ -1,8 +1,12 @@
 <template>
   <div class="wrapper">
-    <span v-if="itemsFound.length == 0">
-      Geen items gevonden :)
-    </span>
+    <v-card v-if="itemsFound.length == 0" class="text-center">
+      <v-card-text>
+        <h1>No items found :(</h1>
+        <p>Maybe type in less blabla and more existing stuff?</p>
+      </v-card-text>
+    </v-card>
+  
     <Item v-for="item in itemsFound" 
       :key="item.uid" 
       :item="item"
@@ -35,5 +39,9 @@ export default {
 <style scoped>
   .wrapper{
     margin: 10px;
+  }
+
+  p{
+    padding: 10px;
   }
 </style>

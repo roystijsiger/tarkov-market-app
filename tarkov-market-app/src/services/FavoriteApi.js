@@ -38,6 +38,10 @@ export function GetFavorites(){
     return Axios.get('/favorites');
 }
 
+export function GetFavorite(itemId){
+    return Axios.get(`/favorites/${itemId}`);
+}
+
 export function RemoveFavorite(uid){
     return Axios.delete(`/favorites/${uid}`);
 }

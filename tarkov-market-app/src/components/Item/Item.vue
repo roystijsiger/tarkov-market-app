@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import {AddFavorite, RemoveFavorite} from '../../services/FavoriteApi';
+import {AddFavorite, RemoveFavorite, GetFavorite} from '../../services/FavoriteApi';
 export default {
     
   name: 'item',
@@ -58,6 +58,9 @@ export default {
       favorite: false
   }),
   created(){
+    GetFavorite(this.item.uid).then(response => {
+        this.favorite = response.data._id  ? true : false
+    })
     this.favorite = this.item.favorite;
   },
   methods : {
