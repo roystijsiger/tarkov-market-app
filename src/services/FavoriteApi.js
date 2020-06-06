@@ -5,13 +5,14 @@ var Axios = axios.create({
     headers: {
     }
 })
+console.log(`favorite api url`, process.env.FAVORITE_API_URL)
 
 Axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
 
 export function SetToken(token){
     token ? localStorage.setItem('token', token) 
         : localStorage.removeItem('token');
-                
+
     Axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 }
 /*
