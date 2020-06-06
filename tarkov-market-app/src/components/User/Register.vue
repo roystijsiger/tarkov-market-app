@@ -1,5 +1,6 @@
 <template>
     <div class="loginForm">
+        <h1>Register</h1>
          <v-text-field
             v-model="user.email"
             label="Email"
@@ -11,7 +12,8 @@
             solo-inverted
             type="password"
           ></v-text-field>
-        <v-btn @click="Register()">Register</v-btn>
+        <v-btn color="green" @click="Register()">Register</v-btn>
+        <v-btn :to="{path: '/login'}">Login</v-btn>
     </div>
 </template>
 
@@ -27,9 +29,8 @@ export default {
     }),
     methods : {
         Register(){
-            Register(this.user.email, this.user.password).then(response =>{
-                console.log(response);
-                this.$router.push({path: '/item/list'});
+            Register(this.user.email, this.user.password).then(() =>{
+                this.$router.push({path: '/login'});
             }).catch(error =>{
                 console.log(error);
             })
@@ -41,5 +42,9 @@ export default {
     .loginForm{
         margin: 20px;
 
+    }
+    
+    button{
+        margin: 10px;
     }
 </style>

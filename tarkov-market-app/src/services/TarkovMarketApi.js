@@ -10,3 +10,7 @@ var Axios = axios.create({
 export function SearchItem(item){
     return Axios.get('/item?q=' + item);
 }
+
+export function SearchItemByUid(uid){
+    return Axios.get('/item?uid=' + uid);
+}

@@ -7,13 +7,19 @@
     >
       <h1>Tarkov Market App</h1>
       
-      <div class="searchBar">
-      <v-text-field
-            v-model="searchValue"
-            label="Search"
-            solo-inverted
-            @keyup="Search()"
-          ></v-text-field>
+      
+      <div class="searchBar" v-show="loggedIn">
+        <v-text-field 
+          class="searchField"
+          v-model="searchValue"
+          label="Search"
+          solo-inverted
+          @keyup="Search()"
+        ></v-text-field>
+        
+        <v-btn :to="{path: '/favorites'}" fab color="orange" class="favorites"><v-icon>fas fa-star</v-icon></v-btn>
+
+        <v-btn @click="Logout()" fab color="red" class="logout"><v-icon>fas fa-sign-out-alt</v-icon></v-btn>
       </div>
     </v-app-bar>
 
@@ -42,10 +48,12 @@ export default {
         this.$emit('search', this.searchValue);
        
       }
+    },
+    Logout(){
+      localStorage.removeItem("token");
+      this.loggedIn = false;
+      this.$router.push({path: '/login'});
     }
-  },
-  mounted(){
-   
   },
   data: () => ({
     searchValue: "",
@@ -62,12 +70,32 @@ export default {
 
 .searchBar{
   position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 80px;
+  width: 350px;
+}
+
+.searchField{
+  position: relative;
+  top: 12.5px;
+  left: 0;
+  width: 200px;
+}
+
+.logout{
+  position: absolute;
   top: 10px;
   right: 10px;
 }
 
+.favorites{
+  position: absolute;
+  top: 10px;
+  right: 80px;
+}
 .searchField {
-  border: 1px solid #fff !important;
   height: 56px;
 }
+
 </style>

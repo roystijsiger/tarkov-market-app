@@ -1,17 +1,11 @@
 <template>
-  <div>
+  <div class="wrapper">
     <span v-if="itemsFound.length == 0">
       Geen items gevonden :)
     </span>
     <Item v-for="item in itemsFound" 
       :key="item.uid" 
-      :uid="item.uid" 
-      :name="item.name" 
-      :price="item.price" 
-      :img="item.img" 
-      :wiki="item.link" 
-      :diff24h="item.diff24h" 
-      :trader="SetTrader(item)"
+      :item="item"
     ></Item>
   </div>
 </template>
@@ -32,15 +26,6 @@ export default {
         })
     })
   },
-  methods: { 
-    SetTrader(item){
-      return {
-        "name": item.traderName,
-        "price": item.traderPrice,
-        "currency" : item.traderPriceCur
-      }
-    }
-  },
   data: () => ({
     itemsFound: []
   }),
@@ -48,5 +33,7 @@ export default {
 </script>
 
 <style scoped>
-  
+  .wrapper{
+    margin: 10px;
+  }
 </style>

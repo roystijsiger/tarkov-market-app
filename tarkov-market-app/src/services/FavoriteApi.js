@@ -10,17 +10,18 @@ var Axios = axios.create({
 /*
 * User section :)
 */
-export function Register(user){
+export function Register(username, password){
     return Axios.post('/auth/register', {
-        "username": user.Email,
-        "password": user.Password
+        "username": username,
+        "password": password
     });
 }
 
-export function Login(user){
+export function Login(username, password)
+    {
     return Axios.post('/auth/login', {
-        "username": user.Email,
-        "password": user.Password
+        "username": username,
+        "password": password
     });
 }
 
