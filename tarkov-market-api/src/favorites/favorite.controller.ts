@@ -17,6 +17,13 @@ export class FavoritesController {
   async findAll(@Request() req): Promise<Favorite[]>{
     return this.favoritesService.findAll(req.user.userId);
   }
+
+  @Get(':uid')
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth()
+  async findByItemId(@Request() req, @Param('uid') itemId : string) : Promise<Favorite>{
+    return this.favoritesService.findByFavoriteByItemId(itemId, req.user.userId);
+  }
  
   @Post()
   @UseGuards(AuthGuard('jwt'))
