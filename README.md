@@ -1,5 +1,29 @@
-# tarkov-market
-Tarkov item finder :) Used to find the value of the items in Tarkov. Easy to use during a raid. For the record this is just a school project ;)
+# tarkov-market-app
 
-## tarkov-market-app
-See the readme in the corelating folder (https://github.com/roystijsiger/tarkov-market/blob/master/tarkov-market-app/README.md)
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Run your tests
+```
+npm run test
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
