@@ -1,7 +1,7 @@
 import axios from 'axios';
 var a = "asdfsdfa";
 var Axios = axios.create({
-    baseURL: 'http://127.0.0.1:3000',
+    baseURL: process.env.FAVORITE_API_URL,
     headers: {
     }
 })
@@ -11,7 +11,7 @@ Axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getIte
 export function SetToken(token){
     token ? localStorage.setItem('token', token) 
         : localStorage.removeItem('token');
-     
+                
     Axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 }
 /*
