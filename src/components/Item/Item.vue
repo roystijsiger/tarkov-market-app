@@ -59,7 +59,7 @@ export default {
   }),
   created(){
     GetFavorite(this.item.uid).then(response => {
-        this.favorite = response.data._id  ?? false;
+        this.favorite = response.data == this.item.uid ?? false;
     })
     this.favorite = this.item.favorite;
   },

@@ -33,7 +33,7 @@ export default {
 
                 var promises = [];
                 this.favorites.forEach(element => {
-                    promises.push(SearchItemByUid(element.item));
+                    promises.push(SearchItemByUid(element));
                 });
 
                 Promise.all(promises).then((results) => {
