@@ -22,7 +22,6 @@ export function SetToken(token){
     Axios.defaults.headers.common['Authorization'] = null;
         localStorage.removeItem('token');
     }
-
 }
 /*
 * User section :)
