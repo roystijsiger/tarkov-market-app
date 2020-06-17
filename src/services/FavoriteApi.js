@@ -2,7 +2,7 @@ import axios from 'axios';
 var a = "asdfsdfa";
 var Axios = axios.create({
     //baseURL: "https://tarkov-favorite-api.herokuapp.com",'
-    baseURL: "http://localhost:3000",
+    baseURL: process.env.VUE_APP_API_URL,
     headers: {
     }
 })
