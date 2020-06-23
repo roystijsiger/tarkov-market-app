@@ -2,7 +2,8 @@ import axios from 'axios';
 var a = "asdfsdfa";
 var Axios = axios.create({
     //baseURL: "https://tarkov-favorite-api.herokuapp.com",'
-    baseURL: process.env.VUE_APP_API_URL,
+    //baseURL: process.env.VUE_APP_API_URL,
+    baseURL: "http://localhost:3000",
     headers: {
     }
 })
@@ -18,7 +19,7 @@ export function SetToken(token){
         localStorage.setItem("userId", jwtParsed.userId);
     }
     else{
-        
+
     Axios.defaults.headers.common['Authorization'] = null;
         localStorage.removeItem('token');
     }

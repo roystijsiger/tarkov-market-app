@@ -6,6 +6,7 @@
             :item="item"
             ></Item>
         </div>
+        <h2 v-if="favorites.length == 0">Geen favorites</h2>
     </div>
 </template>
 
@@ -59,3 +60,7 @@ export default {
     
 }
 </script>
+
+<style scoped>
+    h2{ width: 100%; text-align: center;}
+</style>
